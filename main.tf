@@ -141,6 +141,13 @@ module "cluster" {
   min_node_count    = var.min_node_count
   max_node_count    = var.max_node_count
   resource_labels   = var.resource_labels
+
+  region              = var.region
+  network                = var.network
+  subnetwork             = var.subnetwork
+  ip_range_pods          = var.ip_range_pods
+  ip_range_services      = var.ip_range_services
+  master_authorized_networks = var.master_authorized_networks
 }
 
 // ----------------------------------------------------------------------------
