@@ -7,6 +7,48 @@ variable "gcp_project" {
 }
 
 // ----------------------------------------------------------------------------
+// New Variables
+// ----------------------------------------------------------------------------
+variable "region" {
+  description = "Region in which to create the cluster"
+  type        = string
+  default     = "us-central1"
+}
+
+variable "network" {
+  description = "Network in which to create the cluster"
+  type        = string
+  default     = ""
+}
+
+variable "subnetwork" {
+  description = "Subnetwork in which to create the cluster"
+  type        = string
+  default     = ""
+}
+
+variable "ip_range_pods" {
+  description = "IP Range for pods in the cluster"
+  type        = string
+  default     = ""
+}
+
+variable "ip_range_services" {
+  description = "IP Range for services in the cluster"
+  type        = string
+  default     = ""
+}
+
+variable "master_authorized_networks" {
+    description = "Input in the form [{\"cidr_block\":\"<your CIDR>\",\"display_name\":\"<your location>\"}]"
+    type = list(object({
+        cidr_block = string
+        display_name = string
+    }))
+    default     = []
+}
+
+// ----------------------------------------------------------------------------
 // Optional Variables
 // ----------------------------------------------------------------------------
 variable "cluster_name" {
@@ -96,6 +138,7 @@ variable "resource_labels" {
   default     = {}
 }
 
+
 // ----------------------------------------------------------------------------
 // jx-requirements.yml specific variables only used for template rendering
 // ----------------------------------------------------------------------------
@@ -139,4 +182,26 @@ variable "environments" {
     description = "Generate a stub for each of these environments in requirements.yml"
     type = list(string)
     default = ["dev","staging","production"]
+}
+
+variable "node_pools" {
+    description = "Node pool definitions as per https://github.com/terraform-google-modules/terraform-google-kubernetes-engine"
+    default = [
+    {
+      name               = "default-node-pool"
+
+      machine_type       = "n1-standard-2"
+      disk_size_gb       = "100Gb"
+      min_count          = 1
+      max_count          = 1
+
+      auto_repair        = true
+      auto_upgrade       = true
+    }
+  ]
+}
+
+variable "node_pools_taints" {
+    description = "Taints for the node pools in this cluster"
+    default = {}
 }

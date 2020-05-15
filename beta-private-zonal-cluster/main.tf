@@ -127,7 +127,7 @@ resource "google_project_service" "serviceusage_api" {
 // Create Kubernetes cluster
 // ----------------------------------------------------------------------------
 module "cluster" {
-  source = "./modules/cluster"
+  source = "../modules/beta-private-zonal-cluster"
 
   gcp_project         = var.gcp_project
   zone                = var.zone
@@ -141,6 +141,15 @@ module "cluster" {
   min_node_count    = var.min_node_count
   max_node_count    = var.max_node_count
   resource_labels   = var.resource_labels
+
+  region              = var.region
+  network                = var.network
+  subnetwork             = var.subnetwork
+  ip_range_pods          = var.ip_range_pods
+  ip_range_services      = var.ip_range_services
+  master_authorized_networks = var.master_authorized_networks
+  node_pools                = var.node_pools
+  node_pools_taints         = var.node_pools_taints
 }
 
 // ----------------------------------------------------------------------------
@@ -222,13 +231,4 @@ resource "local_file" "jx-requirements" {
     environments       = var.environments
   })
   filename = "${path.cwd}/jx-requirements.yml"
-}
-
-// ----------------------------------------------------------------------------
-// Let's make sure `jx boot` can connect to the cluster for local booting 
-// ----------------------------------------------------------------------------
-resource "null_resource" "kubeconfig" {
-  provisioner "local-exec" {
-    command = "gcloud container clusters get-credentials ${local.cluster_name} --zone=${module.cluster.cluster_location} --project=${var.gcp_project}"
-  }
 }

@@ -11,10 +11,9 @@ cluster:
   provider: gke
   zone: "${zone}"
 gitops: true
-environments:
-- key: dev
-- key: staging
-- key: production
+environments: %{ if length(environments) == 0 }[]%{ endif }
+%{ for name in environments }  - key: ${name}
+%{ endfor }
 ingress:
   domain: "${parent_domain}"
   externalDNS: ${domain_enabled}
