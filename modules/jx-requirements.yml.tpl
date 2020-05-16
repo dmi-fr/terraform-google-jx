@@ -12,9 +12,9 @@ cluster:
   zone: "${zone}"
 gitops: true
 environments:
-- key: dev
-- key: staging
-- key: production
+%{ for name in environments }
+- key: ${name}
+%{ endfor }
 ingress:
   domain: "${parent_domain}"
   externalDNS: ${domain_enabled}

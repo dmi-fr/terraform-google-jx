@@ -134,3 +134,9 @@ variable "version_stream_ref" {
   type        = string
   default     = "master"
 }
+
+variable "environments" {
+    description = "Generate a stub for each of these environments in requirements.yml"
+    type = list(string)
+    default = ["dev","staging","production"]
+}

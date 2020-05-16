@@ -226,6 +226,7 @@ resource "local_file" "jx-requirements" {
     version_stream_ref = var.version_stream_ref
     version_stream_url = var.version_stream_url
     webhook            = var.webhook
+    environments       = var.environments
   })
   filename = "${path.cwd}/jx-requirements.yml"
 }
