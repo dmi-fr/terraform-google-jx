@@ -7,47 +7,6 @@ variable "gcp_project" {
 }
 
 // ----------------------------------------------------------------------------
-// New Variables
-// ----------------------------------------------------------------------------
-variable "region" {
-  description = "Region in which to create the cluster"
-  type        = string
-  default     = "us-central1"
-}
-
-variable "network" {
-  description = "Network in which to create the cluster"
-  type        = string
-  default     = ""
-}
-
-variable "subnetwork" {
-  description = "Subnetwork in which to create the cluster"
-  type        = string
-  default     = ""
-}
-
-variable "ip_range_pods" {
-  description = "IP Range for pods in the cluster"
-  type        = string
-  default     = ""
-}
-
-variable "ip_range_services" {
-  description = "IP Range for services in the cluster"
-  type        = string
-  default     = ""
-}
-
-variable "master_authorized_networks" {
-    description = "Input in the form [{\"cidr_block\":\"<your CIDR>\",\"display_name\":\"<your location>\"}]"
-    type = list(object({
-        cidr_block = string
-        display_name = string
-    }))
-}
-
-// ----------------------------------------------------------------------------
 // Optional Variables
 // ----------------------------------------------------------------------------
 variable "cluster_name" {
