@@ -11,9 +11,8 @@ cluster:
   provider: gke
   zone: "${zone}"
 gitops: true
-environments:
-%{ for name in environments }
-- key: ${name}
+environments: %{ if length(environments) == 0 }[]%{ endif }
+%{ for name in environments }  - key: ${name}
 %{ endfor }
 ingress:
   domain: "${parent_domain}"
