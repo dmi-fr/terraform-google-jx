@@ -3,7 +3,7 @@ output "cluster_name" {
 }
 
 output "cluster_location" {
-    value = module.jx_cluster.zones[0]
+    value = var.zone
 }
 
 output "cluster_endpoint" {
