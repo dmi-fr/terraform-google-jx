@@ -138,6 +138,7 @@ variable "resource_labels" {
   default     = {}
 }
 
+
 // ----------------------------------------------------------------------------
 // jx-requirements.yml specific variables only used for template rendering
 // ----------------------------------------------------------------------------
@@ -181,4 +182,26 @@ variable "environments" {
     description = "Generate a stub for each of these environments in requirements.yml"
     type = list(string)
     default = ["dev","staging","production"]
+}
+
+variable "node_pools" {
+    description = "Node pool definitions as per https://github.com/terraform-google-modules/terraform-google-kubernetes-engine"
+    default = [
+    {
+      name               = "default-node-pool"
+
+      machine_type       = "n1-standard-2"
+      disk_size_gb       = "100Gb"
+      min_count          = 1
+      max_count          = 1
+
+      auto_repair        = true
+      auto_upgrade       = true
+    }
+  ]
+}
+
+variable "node_pools_taints" {
+    description = "Taints for the node pools in this cluster"
+    default = {}
 }

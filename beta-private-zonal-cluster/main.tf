@@ -148,6 +148,8 @@ module "cluster" {
   ip_range_pods          = var.ip_range_pods
   ip_range_services      = var.ip_range_services
   master_authorized_networks = var.master_authorized_networks
+  node_pools                = var.node_pools
+  node_pools_taints         = var.node_pools_taints
 }
 
 // ----------------------------------------------------------------------------

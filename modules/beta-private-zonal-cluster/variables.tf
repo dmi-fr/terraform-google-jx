@@ -57,6 +57,9 @@ variable "ip_range_services" {
     type = string
 }
 
+variable "node_pools" {
+    description = "Node pool definitions as per https://github.com/terraform-google-modules/terraform-google-kubernetes-engine"
+}
 
 // ----------------------------------------------------------------------------
 // Optional Variables
@@ -154,20 +157,8 @@ variable "logging_service" {
   default     = "logging.googleapis.com/kubernetes"
 }
 
-variable "node_pools" {
-    description = "Node pool definitions as per https://github.com/terraform-google-modules/terraform-google-kubernetes-engine"
-    type = object
-    default = [
-    {
-      name               = "autoscale-node-pool"
-
-      machine_type       = var.node_machine_type
-      disk_size_gb       = var.node_disk_size
-      min_count          = var.min_node_count
-      max_count          = var.max_node_count
-
-      auto_repair        = true
-      auto_upgrade       = true
-    }
-  ]
+variable "node_pools_taints" {
+    description = "Taints for the node pools in this cluster"
+    default = {}
 }
+
