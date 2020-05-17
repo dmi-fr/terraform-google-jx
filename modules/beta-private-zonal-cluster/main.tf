@@ -28,6 +28,8 @@ module "jx_cluster" {
 
   node_pools = var.node_pools
 
+  node_pools_taints = var.node_pools_taints
+
   node_pools_oauth_scopes = {
     all = [
         "https://www.googleapis.com/auth/cloud-platform",
