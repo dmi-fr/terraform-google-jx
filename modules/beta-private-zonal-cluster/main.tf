@@ -26,19 +26,7 @@ module "jx_cluster" {
 
   node_metadata = "GKE_METADATA_SERVER"
 
-  node_pools = [
-    {
-      name               = "autoscale-node-pool"
-
-      machine_type       = var.node_machine_type
-      disk_size_gb       = var.node_disk_size
-      min_count          = var.min_node_count
-      max_count          = var.max_node_count
-
-      auto_repair        = true
-      auto_upgrade       = true
-    }
-  ]
+  node_pools = var.node_pools
 
   node_pools_oauth_scopes = {
     all = [
