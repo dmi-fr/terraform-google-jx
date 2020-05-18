@@ -196,7 +196,7 @@ variable "node_pools" {
       max_count          = 1
 
       auto_repair        = true
-      auto_upgrade       = true
+      auto_upgrade       = false
     }
   ]
 }
@@ -204,4 +204,9 @@ variable "node_pools" {
 variable "node_pools_taints" {
     description = "Taints for the node pools in this cluster"
     default = {}
+}
+
+variable "kubernetes_version" {
+    description = "Kubernetes version for the cluster"
+    default = "latest"
 }

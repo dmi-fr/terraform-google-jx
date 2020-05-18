@@ -162,3 +162,8 @@ variable "node_pools_taints" {
     default = {}
 }
 
+variable "kubernetes_version" {
+    description = "Kubernetes version for the cluster"
+    default = "latest"
+}
+

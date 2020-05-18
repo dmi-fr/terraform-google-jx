@@ -150,6 +150,7 @@ module "cluster" {
   master_authorized_networks = var.master_authorized_networks
   node_pools                = var.node_pools
   node_pools_taints         = var.node_pools_taints
+  kubernetes_version        = var.kubernetes_version
 }
 
 // ----------------------------------------------------------------------------

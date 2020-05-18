@@ -14,6 +14,7 @@ module "jx_cluster" {
   enable_private_nodes    = true
   master_ipv4_cidr_block  = "172.16.0.0/28"
   master_authorized_networks = var.master_authorized_networks
+  kubernetes_version = var.kubernetes_version
   
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
