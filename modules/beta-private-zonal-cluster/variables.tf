@@ -22,6 +22,13 @@ variable "master_authorized_networks" {
     }))
 }
 
+variable "master_global_access_enabled" {
+  type        = bool
+  description = "(Beta) Whether the cluster master is accessible globally (from any region) or only within the same region as the private endpoint."
+
+  default     = true
+}
+
 variable "cluster_name" {
   description = "Name of the Kubernetes cluster"
   type = string
