@@ -213,6 +213,11 @@ variable "node_pools_taints" {
     default = {}
 }
 
+variable "node_pools_labels" {
+    description = "Labels for the node pools in this cluster"
+    default = {}
+}
+
 variable "kubernetes_version" {
     description = "Kubernetes version for the cluster"
     default = "latest"

@@ -151,6 +151,7 @@ module "cluster" {
   master_global_access_enabled  = var.master_global_access_enabled
   node_pools                = var.node_pools
   node_pools_taints         = var.node_pools_taints
+  node_pools_labels         = var.node_pools_labels
   kubernetes_version        = var.kubernetes_version
 }
 
