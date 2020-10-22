@@ -222,3 +222,9 @@ variable "kubernetes_version" {
     description = "Kubernetes version for the cluster"
     default = "latest"
 }
+
+variable "cloudflare_bypass_ips" {
+  description = "List of CIDR ranges to allow direct access to LB (bypassing Cloudflare)"
+  type = list(string)
+  default = null
+}
