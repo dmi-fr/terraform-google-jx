@@ -222,3 +222,9 @@ variable "kubernetes_version" {
     description = "Kubernetes version for the cluster"
     default = "latest"
 }
+
+variable "deny_external_traffic" {
+  description = "Whether to block all incoming traffic not originating from Cloudflare"
+  type = bool
+  default = false
+}

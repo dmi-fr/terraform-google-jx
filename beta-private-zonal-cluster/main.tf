@@ -235,3 +235,39 @@ resource "local_file" "jx-requirements" {
   })
   filename = "${path.cwd}/jx-requirements.yml"
 }
+
+// ----------------------------------------------------------------------------
+// Create Cloud Armor Security Policy
+// Will be attached to nginx-ingress LB
+// Policy only allows traffic from Cloudfront
+// toggled by `deny_external_traffic` variable
+// ----------------------------------------------------------------------------
+resource "google_compute_security_policy" "cloudflare_policy" {
+  count = var.deny_external_traffic ? 1 : 0
+
+  name = "deny-external-to-${var.cluster_name}"
+
+  rule {
+    action   = "allow"
+    preview  = false
+    priority = "750"
+    match {
+      expr {
+        expression = "evaluatePreconfiguredExpr('sourceiplist-cloudflare')"
+      }
+    }
+  }
+
+  rule {
+    action   = "deny(403)"
+    preview  = false
+    priority = "2147483647"
+    match {
+      versioned_expr = "SRC_IPS_V1"
+      config {
+        src_ip_ranges = ["*"]
+      }
+    }
+    description = "Default rule, higher priority overrides it"
+  }
+}
