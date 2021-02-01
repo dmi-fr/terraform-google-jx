@@ -8,10 +8,12 @@ output "cluster_location" {
 
 output "cluster_endpoint" {
     value = module.jx_cluster.endpoint
+    sensitive = true
 }
 
 output "cluster_ca_certificate" {
     value = module.jx_cluster.ca_certificate
+    sensitive = true
 }
 
 output "log_storage_url" {

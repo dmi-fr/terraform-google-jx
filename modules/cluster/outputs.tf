@@ -8,10 +8,12 @@ output "cluster_location" {
 
 output "cluster_endpoint" {
     value = google_container_cluster.jx_cluster.endpoint
+    sensitive = true
 }
 
 output "cluster_ca_certificate" {
     value = google_container_cluster.jx_cluster.master_auth[0].cluster_ca_certificate
+    sensitive = true
 }
 
 output "log_storage_url" {
