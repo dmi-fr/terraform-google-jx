@@ -13,36 +13,24 @@ terraform {
 provider "google" {
   project = var.gcp_project
   zone    = var.zone
-  version = ">= 2.12.0"
 }
 
 provider "google-beta" {
   project = var.gcp_project
   zone    = var.zone
-  version = ">= 2.12.0"
 }
 
-provider "random" {
-  version = ">= 2.2.0"
-}
+provider "random" {}
 
-provider "local" {
-  version = ">= 1.2.0"
-}
+provider "local" {}
 
-provider "null" {
-  version = ">= 2.1.0"
-}
+provider "null" {}
 
-provider "template" {
-  version = ">= 2.1.0"
-}
+provider "template" {}
 
-data "google_client_config" "default" {
-}
+data "google_client_config" "default" {}
 
 provider "kubernetes" {
-  version          = ">= 1.11.0"
   load_config_file = false
 
   host  = "https://${module.cluster.cluster_endpoint}"
@@ -66,7 +54,7 @@ resource "random_pet" "current" {
 }
 
 locals {
-  cluster_name = "${var.cluster_name != "" ? var.cluster_name : random_pet.current.id}"
+  cluster_name = var.cluster_name != "" ? var.cluster_name : random_pet.current.id
 }
 
 // ----------------------------------------------------------------------------
