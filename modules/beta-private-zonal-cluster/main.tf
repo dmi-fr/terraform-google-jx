@@ -16,7 +16,9 @@ module "jx_cluster" {
   master_authorized_networks = var.master_authorized_networks
   master_global_access_enabled = var.master_global_access_enabled
   kubernetes_version = var.kubernetes_version
-  
+
+  network_policy = var.network_policy
+
   # We can't create a cluster with no node pool defined, but we want to only use
   # separately managed node pools. So we create the smallest possible default
   # node pool and immediately delete it.

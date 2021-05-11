@@ -228,3 +228,9 @@ variable "deny_external_traffic" {
   type = bool
   default = false
 }
+
+variable "network_policy" {
+  description = "Flag to enable or disable network policies on the cluster (defaults to Calico provider)"
+  type        = bool
+  default     = false
+}

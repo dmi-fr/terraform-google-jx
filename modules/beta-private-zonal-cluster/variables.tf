@@ -179,3 +179,8 @@ variable "kubernetes_version" {
     default = "latest"
 }
 
+variable "network_policy" {
+  description = "Flag to enable or disable network policies on the cluster (defaults to Calico provider)"
+  type        = bool
+  default     = false
+}

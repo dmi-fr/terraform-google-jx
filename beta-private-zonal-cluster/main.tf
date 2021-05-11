@@ -141,6 +141,8 @@ module "cluster" {
   node_pools_taints         = var.node_pools_taints
   node_pools_labels         = var.node_pools_labels
   kubernetes_version        = var.kubernetes_version
+
+  network_policy = var.network_policy
 }
 
 // ----------------------------------------------------------------------------
