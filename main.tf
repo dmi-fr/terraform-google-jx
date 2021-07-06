@@ -43,7 +43,8 @@ data "google_client_config" "default" {
 
 provider "kubernetes" {
   version          = ">= 1.11.0"
-  load_config_file = false
+  # no longer supported by provider
+  #load_config_file = false
 
   host  = "https://${module.cluster.cluster_endpoint}"
   token = data.google_client_config.default.access_token
